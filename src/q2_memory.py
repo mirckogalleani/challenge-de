@@ -1,5 +1,10 @@
 from typing import List, Tuple
+from collections import Counter
+import emoji
+import json
+from memory_profiler import profile
 
+@profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     # Función para extraer emojis del texto
     def extract_emojis(text):
@@ -9,7 +14,7 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     
     emoji_counter = Counter()
     
-    # Primera iteración: Procesar archivo linea por linea
+    # Iteración: Procesar archivo linea por linea
     with open(file_path, 'r', encoding='utf-8') as file:
         for line in file:
             try:
@@ -22,5 +27,6 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
             #manejo de errores
             except (json.JSONDecodeError, KeyError) as e:
                 print(f"Error processing the tweet: {e}")
+    
     #  obtener el top 10 emojis
     return emoji_counter.most_common(10)
