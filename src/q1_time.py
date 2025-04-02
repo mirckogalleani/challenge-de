@@ -35,6 +35,7 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
     
     for date, count in top_dates:
         user_counts = date_to_users[date]
+        print(user_counts)
         most_active_user, user_tweet_count = max(user_counts.items(), key=lambda x: x[1]) if user_counts else ("None", 0)
         result.append((date, most_active_user))   
     
