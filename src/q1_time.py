@@ -3,8 +3,9 @@ from datetime import datetime
 import json
 from collections import defaultdict
 import heapq
+from memory_profiler import profile
 
-
+@profile
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     date_to_users = defaultdict(lambda: defaultdict(int))
