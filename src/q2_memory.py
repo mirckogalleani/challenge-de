@@ -19,10 +19,8 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
         for line in file:
             try:
                 tweet = json.loads(line)
-                
                 # Get tweet text (handle both standard and extended tweets)
                 text = tweet.get('content', '') or tweet.get('renderedContent', '')
-                
                 # extraer emojis del texto y contar los emojis
                 emojis_found = extract_emojis(text)
                 emoji_counter.update(emojis_found)
@@ -30,6 +28,5 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
             #manejo de errores
             except (json.JSONDecodeError, KeyError) as e:
                 print(f"Error processing the tweet: {e}")
-    
     #  obtener el top 10 emojis
     return emoji_counter.most_common(10)
