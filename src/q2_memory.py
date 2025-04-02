@@ -1,10 +1,5 @@
 from typing import List, Tuple
-import json
-import emoji
-from collections import Counter
-from memory_profiler import profile
 
-@profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     # Función para extraer emojis del texto
     def extract_emojis(text):
@@ -19,7 +14,6 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
         for line in file:
             try:
                 tweet = json.loads(line)
-                # Get tweet text (handle both standard and extended tweets)
                 text = tweet.get('content', '') or tweet.get('renderedContent', '')
                 # extraer emojis del texto y contar los emojis
                 emojis_found = extract_emojis(text)
