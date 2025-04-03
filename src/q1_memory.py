@@ -1,10 +1,6 @@
 from typing import List, Tuple
 from datetime import datetime
-import json
-from collections import  Counter
-from memory_profiler import profile
 
-@profile
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     
     # Primera iteración: Contar los tweets por fecha

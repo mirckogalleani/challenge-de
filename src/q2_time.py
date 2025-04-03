@@ -5,7 +5,6 @@ from collections import Counter
 import heapq
 from memory_profiler import profile
 
-@profile
 def q2_time(file_path: str) -> List[Tuple[str, int]]:
     # Función para extraer emojis del texto
     def extract_emojis(text):

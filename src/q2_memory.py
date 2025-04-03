@@ -1,10 +1,5 @@
 from typing import List, Tuple
-from collections import Counter
-import emoji
-import json
-from memory_profiler import profile
 
-@profile
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     # Función para extraer emojis del texto
     def extract_emojis(text):
