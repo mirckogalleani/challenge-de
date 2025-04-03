@@ -1,7 +1,6 @@
 from typing import List, Tuple
 import json
 from collections import Counter
-import heapq
 
 from memory_profiler import profile
 
@@ -20,6 +19,9 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
                     mentioned_user_counter.update(username for user in mentioned_users if (username := user.get('username')))
 
             #manejo de errores
-            except (json.JSONDecodeError, KeyError) as e:
-                print(f"Error processing the tweet: {e}")
+            except json.JSONDecodeError as e:
+                print(f"Error decodeando el tweet en formato json: {e}")
+            except KeyError as e:
+                print(f"Error encontrando mentionedUsers o username en el objeto twitter: {e}")
+    # retornar el top 10 users 
     return mentioned_user_counter.most_common(10)

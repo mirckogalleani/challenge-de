@@ -20,8 +20,10 @@ def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
                     date_counts[date_only] += 1
             
             #manejo de errores
-            except (json.JSONDecodeError, ValueError, KeyError) as e:
-                print(f"Error processing the tweet: {e}")
+            except json.JSONDecodeError as e:
+                print(f"Error decodeando el tweet en formato json: {e}")
+            except KeyError as e:
+                print(f"Error encontrando date en el objeto twitter: {e}")
     
     # obtener el top 10 fechas con la mayor cantidad de tweets
     top_dates = date_counts.most_common(10)
@@ -46,8 +48,10 @@ def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
                             username = tweet.get('user', {}).get('username', '')
                             if username:
                                 user_counts[username] += 1
-                except (json.JSONDecodeError, ValueError, KeyError) as e:
-                    print(f"Error processing the tweet: {e}")
+                except json.JSONDecodeError as e:
+                    print(f"Error decodeando el tweet en formato json: {e}")
+                except KeyError as e:
+                    print(f"Error encontrando date o username en el objeto twitter: {e}")
         
         most_active_user, user_tweet_count = user_counts.most_common(1)[0] if user_counts else ("None", 0)
         result.append((date, most_active_user))

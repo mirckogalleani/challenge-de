@@ -1,5 +1,4 @@
 from typing import List, Tuple
-import re
 import json
 import emoji
 from collections import Counter
@@ -27,8 +26,11 @@ def q2_time(file_path: str) -> List[Tuple[str, int]]:
                 emoji_matches = extract_emojis(text)
                 all_emojis.extend(emoji_matches)
 
+            #manejo de errores
             except json.JSONDecodeError as e:
-                print(f"Error processing the tweet: {e}")
+                print(f"Error decodeando el tweet en formato json: {e}")
+            except KeyError as e:
+                print(f"Error encontrando content o renderedContent en el objeto twitter: {e}")
         #contar emojis
         emoji_counter = Counter(all_emojis)
 
