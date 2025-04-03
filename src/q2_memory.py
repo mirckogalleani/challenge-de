@@ -25,8 +25,10 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
                 emoji_counter.update(emojis_found)
             
             #manejo de errores
-            except (json.JSONDecodeError, KeyError) as e:
-                print(f"Error processing the tweet: {e}")
+            except json.JSONDecodeError as e:
+                print(f"Error decodeando el tweet en formato json: {e}")
+            except KeyError as e:
+                print(f"Error encontrando content o renderedContent en el objeto twitter: {e}")
     
     #  obtener el top 10 emojis
     return emoji_counter.most_common(10)

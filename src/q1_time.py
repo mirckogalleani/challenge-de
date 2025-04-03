@@ -26,8 +26,10 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
                     username = tweet.get('user', {}).get('username', '')
                     if username:
                         date_to_users[date_only][username] += 1
-            except (json.JSONDecodeError, ValueError, KeyError) as e:
-                print(f"Error processing the tweet: {e}")
+            except json.JSONDecodeError as e:
+                print(f"Error decodeando el tweet en formato json: {e}")
+            except KeyError as e:
+                print(f"Error encontrando date o user en el objeto twitter: {e}")
     
     # obtener el top 10 fechas con la mayor cantidad de tweets
     top_dates = heapq.nlargest(10, date_tweet_counts.items(), key=lambda x: x[1])
@@ -36,7 +38,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
     
     for date, count in top_dates:
         user_counts = date_to_users[date]
-        print(user_counts)
         most_active_user, user_tweet_count = max(user_counts.items(), key=lambda x: x[1]) if user_counts else ("None", 0)
         result.append((date, most_active_user))   
     
