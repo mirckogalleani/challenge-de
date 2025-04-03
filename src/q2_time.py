@@ -30,7 +30,7 @@ def q2_time(file_path: str) -> List[Tuple[str, int]]:
             except json.JSONDecodeError as e:
                 print(f"Error processing the tweet: {e}")
         #contar emojis
-        emoji_counter = Counter(all_emosjis)
+        emoji_counter = Counter(all_emojis)
 
     # Usar heap para buscar el top 10 emojis
     return heapq.nlargest(10, emoji_counter.items(), key=lambda x: x[1])
